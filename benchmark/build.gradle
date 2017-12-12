@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.1"
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+    defaultConfig {
+        applicationId "com.bluelinelabs.logansquare.demo"
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:27.0.2'
+
+    annotationProcessor project(':processor')
+    implementation project(':core')
+
+    // LoganSquare annotation processor
+    annotationProcessor 'com.bluelinelabs:logansquare-compiler:1.3.7'
+    // LoganSquare runtime library
+    implementation 'com.bluelinelabs:logansquare:1.3.7'
+
+    // Jackson libraries for comparison
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.0'
+
+    // GSON library for comparison
+    implementation 'com.google.code.gson:gson:2.8.0'
+
+    // Moshi library for camparison
+    implementation 'com.squareup.moshi:moshi:1.0.0'
+}
